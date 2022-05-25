@@ -6,7 +6,7 @@ export class State extends BaseEntity {
     @PrimaryGeneratedColumn()
     id_st: number
 
-    @Column()
+    @Column({ unique: true })
     name: string
 
     @OneToMany(

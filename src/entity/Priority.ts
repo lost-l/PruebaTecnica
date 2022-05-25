@@ -6,7 +6,7 @@ export class Priority extends BaseEntity {
     @PrimaryGeneratedColumn()
     id_prt: number
 
-    @Column()
+    @Column({ unique: true })
     name: string
 
     @OneToMany(

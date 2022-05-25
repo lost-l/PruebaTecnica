@@ -9,11 +9,14 @@ export class User extends BaseEntity {
     @Column()
     name: string
 
-    @Column()
+    @Column({ unique: true })
     email: string
 
     @Column()
-    active: boolean
+    password: string
+
+    @Column({ default: true })
+    active: boolean = true
 
     @OneToMany(
         type => Task, (task) => task.fk_user

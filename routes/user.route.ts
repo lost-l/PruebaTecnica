@@ -1,8 +1,19 @@
 import express, { Request, Response } from "express";
-export const router = express();
+import { check } from "express-validator";
+import { userPost } from "../controller/user.control";
+import { emailExists } from "../helpers/db_validation";
+import { fieldValidation } from "../middlewares/fieldValidation";
+const router = express();
 
 router.use(express.json())
 
-router.get("/", (req: Request, res: Response) => {
-    res.send("Hi")
-})
+router.post('/', [
+    check('name', 'The name is required').notEmpty(),
+    check('password', 'Minimun 6 character for password').isLength({ min: 6 }),
+    check('email', 'Email must be valid').isEmail(),
+    check('email').custom(emailExists),
+    fieldValidation
+], userPost)
+
+
+export { router };
