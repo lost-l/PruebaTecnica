@@ -4,6 +4,7 @@ import { connection } from "../db/config";
 import { router as router_user } from "../routes/user.route";
 import { router as router_login } from "../routes/login.route";
 import { router as router_task } from "../routes/task.route";
+import { router as router_views } from "../routes/view.route";
 
 export class Server {
     readonly app = express();
@@ -12,6 +13,7 @@ export class Server {
         login: "/api/login",
         user: "/api/user",
         task: "/api/task",
+        views: "/api/views",
     }
 
     constructor() {
@@ -32,6 +34,7 @@ export class Server {
         this.app.use(this.paths.user, router_user)
         this.app.use(this.paths.login, router_login)
         this.app.use(this.paths.task, router_task)
+        this.app.use(this.paths.views, router_views)
     }
 
     listen() {
