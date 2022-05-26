@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { check } from "express-validator";
-import { userPost } from "../controller/user.control";
+import { userGet, userPost } from "../controller/user.control";
 import { emailExists } from "../helpers/db_validation";
 import { fieldValidation } from "../middlewares/fieldValidation";
 const router = express();
@@ -15,5 +15,6 @@ router.post('/', [
     fieldValidation
 ], userPost)
 
+router.get('/', userGet)
 
 export { router };
